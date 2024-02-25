@@ -1,6 +1,5 @@
 name: Certificate_Task
 on: workflow_dispatch
-run-name: MCertificate_Task
 
 jobs:
   Merge_SSL_Task:
@@ -10,7 +9,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name : Merge certificates
-        working-directory: ${{ github.workspace }}
         shell: bash
         run: |
           cat mySplunkWebCertificate.pem > myCombinedServerCertificate.pem
