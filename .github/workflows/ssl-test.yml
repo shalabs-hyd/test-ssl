@@ -13,9 +13,9 @@ jobs:
         run: |
           export TERM=xterm
           cat mySplunkWebCertificate.pem > myCombinedServerCertificate.pem
-          echo >> myCombinedServerCertificate.pem
+          #echo >> myCombinedServerCertificate.pem
           cat mySplunkWebPrivateKey.key >> myCombinedServerCertificate.pem
-          echo >> myCombinedServerCertificate.pem
+          #echo >> myCombinedServerCertificate.pem
           cat  myCACertificateChain.pem >> myCombinedServerCertificate.pem
           cat myCombinedServerCertificate.pem
 
