@@ -1,0 +1,31 @@
+name: Certificate_Task
+on: workflow_dispatch
+run-name: MCertificate_Task
+
+jobs:
+  Merge_SSL_Task:
+    runs-on: ubuntu-latest
+    steps:
+      - name : Check_Out 
+        uses: actions/checkout@v3
+
+      - name : Merge certificates
+        working-directory: ${{ github.workspace }}
+        shell: bash
+        run: |
+          cat mySplunkWebCertificate.pem > myCombinedServerCertificate.pem
+          echo >> myCombinedServerCertificate.pem
+          cat mySplunkWebPrivateKey.key >> myCombinedServerCertificate.pem
+          echo >> myCombinedServerCertificate.pem
+          cat  myCACertificateChain.pem >> myCombinedServerCertificate.pem
+          clear
+          cat myCombinedServerCertificate.pem
+
+      - name: Upload the combined cert
+        uses: actions/upload-artifact@v3
+        with:
+          name: cert-bundle.pem
+          path: |
+           ${{ github.workspace }}/myCombinedServerCertificate.pem
+
+  
