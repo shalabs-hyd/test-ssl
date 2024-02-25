@@ -11,12 +11,12 @@ jobs:
       - name : Merge certificates
         shell: bash
         run: |
+          export TERM=xterm
           cat mySplunkWebCertificate.pem > myCombinedServerCertificate.pem
           echo >> myCombinedServerCertificate.pem
           cat mySplunkWebPrivateKey.key >> myCombinedServerCertificate.pem
           echo >> myCombinedServerCertificate.pem
           cat  myCACertificateChain.pem >> myCombinedServerCertificate.pem
-          clear
           cat myCombinedServerCertificate.pem
 
       - name: Upload the combined cert
